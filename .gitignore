@@ -1,0 +1,17 @@
+.vagrant/
+msx/
+*.bin
+*.dsk
+*.err
+*.log
+*.com
+*.swp
+*.sys
+*~
+*.lk
+*.lst
+*.map
+*.noi
+*.rel
+*.sym
+*.ihx
