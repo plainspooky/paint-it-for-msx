@@ -1,5 +1,4 @@
 AS=sdasz80
-CAT=cat
 CC=sdcc
 ECHO=echo
 HEXBIN=./hexbin.py

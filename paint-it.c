@@ -1,5 +1,21 @@
 /*
-    PAINT-IT for MSX - program file
+    Paint-it -- Program file
+    A flood-it game written in SDCC for MSX computer.
+
+    Copyright (C) 2020  Giovanni Nunes
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include<stdio.h>
 #include<stdlib.h>
@@ -178,41 +194,13 @@ void display_cw_logo(){
 
 } // display_cw_logo()
 
-// ????
 void display_gpl_message(){
     /*
         Makes GPL message scroll up on screen
     */
     // set width of 28 columns and set cursor position
-    *linlen = 28;
-    locate(1, 24);
-
-    puts("PAINT-IT for MSX 1.0\r");
-    puts("(c)2020 by Crunchworks\r\n\r");
-
-    puts("it and/or modify it under\r");
-    puts("This program is free soft-\r");
-    puts("ware; you can redistribute\r");
-    puts("the terms of the GNU Gen-\r");
-    puts("eral Public License as\r");
-    puts("published by the Free\r");
-    puts("Software Foundation; ei-\r");
-    puts("ther version 2 of the Li-\r");
-    puts("cense, or (at your option)\r");
-    puts("any later version.\r\n\r");
-
-    puts("This program is distrib-\r");
-    puts("uted in the hope that it\r");
-    puts("will be useful, but WITH-\r");
-    puts("OUT ANY WARRANTY; without\r");
-    puts("even the implied warranty\r");
-    puts("of MERCHANTABILITY or FIT-\r");
-    puts("NESS FOR A PARTICULAR PUR-\r");
-    puts("POSE. See the GNU General\r");
-    puts("Public License for more\r");
-
-    // that's just to avoid a line feed ^_^
-    printf("details.");
+    puts("Paint-it\r\nCopyright (C) 2020 Giovanni Nunes\r");
+    puts("This program comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under certain conditions; type `show c' for details.\r");
 
 } // display_gpl_message()
 
@@ -566,13 +554,12 @@ int main(void){
     init_screen();
 
     display_cw_logo();
-    display_gpl_message();
 
     while (game() == 0) {};
 
     // return to SCREEN 0 before exit...
     set_video_mode(0);
-    puts("\x0c\r");
+    display_gpl_message();
 
     return 0;
 
