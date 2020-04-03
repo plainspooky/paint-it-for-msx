@@ -198,9 +198,8 @@ void display_gpl_message(){
     /*
         Makes GPL message scroll up on screen
     */
-    // set width of 28 columns and set cursor position
     puts("Paint-it\r\nCopyright (C) 2020 Giovanni Nunes\r");
-    puts("This program comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under certain conditions; type `show c' for details.\r");
+    puts("This program comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under certain conditions;");
 
 } // display_gpl_message()
 
