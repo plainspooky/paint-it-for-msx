@@ -1,7 +1,6 @@
 .vagrant/
 msx/
 *.bin
-*.dsk
 *.err
 *.log
 *.com

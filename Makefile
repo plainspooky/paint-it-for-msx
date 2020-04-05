@@ -1,3 +1,4 @@
+DIST=Paint-it (2020) (Crunchworks)
 AS=sdasz80
 CC=sdcc
 ECHO=echo
@@ -16,7 +17,7 @@ ADVANCED=--code-loc 0x178 ./msx/crt0msx_msxdos_advanced.rel
 
 RELOCATE=./msx/putchar.rel ./msx/getchar.rel ./msx/dos.rel ./msx/conio.rel ${LIBS}.rel
 
-.PHONY: normal advanced clean superclean libs
+.PHONY: normal advanced clean superclean libs dist
 
 default:
 	make normal
@@ -31,6 +32,15 @@ advanced:
 	${CC} ${INCLUDE} ${PARAMS} ${ADVANCED} ${RELOCATE} ${INFILE}.c
 	${HEXBIN} ${OUTFILE}.ihx ${OUTFILE}.com
 
+libs:
+	${AS} -o ${LIBS}.s
+
+dist:
+	rm -f "${DIST}.zip"
+	cp "distribution/${DIST}.dsk" "${DIST}.dsk"
+	openmsx -machine msx2 -script install.tcl
+	zip -9 "${DIST}.zip" "${DIST}.dsk"
+
 clean:
 	${RM} ${OUTFILE}.com ${OUTFILE}.ihx
 
@@ -39,6 +49,4 @@ superclean:
 		${OUTFILE}.lk ${OUTFILE}.lst ${OUTFILE}.map\
 		${OUTFILE}.noi ${OUTFILE}.rel ${OUTFILE}.sym
 
-libs:
-	${AS} -o ${LIBS}.s
 
