@@ -508,7 +508,7 @@ int game(){
 
         case GAME_LOSE:
             locate(9, 23);
-            printf("%i/%i YOU LOOSE!", moves, MAX_MOVES);
+            printf("%i/%i  YOU LOSE!", moves, MAX_MOVES);
             break;
 
         default:
