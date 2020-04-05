@@ -1,6 +1,45 @@
-    .area _CODE
+.area _CODE
+
+call_bios:
+
+    ld iy,(#0xFCC1-1)
+    call #0x001C
+
+    ret
+
+
+_read_vram:
+
+    push ix
+
+    ld ix,#0
+    add ix,sp
+
+    ld l,4(ix)
+    ld h,5(ix)
+
+    ld ix,#0x4A
+    call #call_bios
+
+    ld l,a
+
+    pop ix
+    ret
+
+
+_set_colors::
+
+    push ix
+
+    ld ix,#0x62
+    call #call_bios
+
+    pop ix
+    ret
+
 
 _set_tiles::
+
     push ix
 
     ld ix,#0
@@ -21,9 +60,8 @@ _set_tiles::
 
             ld a,(de)
 
-            ld iy,(#0xFCC1-1)
             ld ix,#0x4D
-            call #0x001C
+            call #call_bios
 
             inc de
             inc hl
@@ -36,6 +74,60 @@ _set_tiles::
 
     pop ix
     ret
+
+
+_set_video_mode::
+
+    push ix
+
+    ld ix,#0
+    add ix,sp
+
+    ld a,4(ix)
+
+    ld ix,#0x5f
+    call #call_bios
+
+    pop ix
+    ret
+
+    .area _CODE
+
+
+_write_vdp::
+
+    push ix
+
+    ld ix,#0
+    add ix,sp
+
+    ld c,4(ix)
+    ld b,5(ix)
+
+    ld ix,#0x47
+    call #call_bios
+
+    pop ix
+    ret
+
+
+_write_vram::
+
+    push ix
+
+    ld ix,#0
+    add ix,sp
+
+    ld l,4(ix)
+    ld h,5(ix)
+    ld a,6(ix)
+
+    ld ix,#0x4D
+    call #call_bios
+
+    pop ix
+    ret
+
 
 set_tiles__data:
     .db #0x00, #0x00, #0x00, #0x00, #0x00, #0x00, #0x00, #0x00

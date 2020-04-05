@@ -4,10 +4,9 @@ ECHO=echo
 HEXBIN=./hexbin.py
 RM=rm
 
-INFILE=paint-it.c
+INFILE=paint-it
 OUTFILE=paint-it
-
-LIBS=set_colors.rel set_video_mode.rel set_tiles.rel vdp.rel
+LIBS=paint-it_libs
 
 INCLUDE=-I./msx
 PARAMS=-mz80 --no-std-crt0 --data-loc 0
@@ -15,7 +14,7 @@ PARAMS=-mz80 --no-std-crt0 --data-loc 0
 NORMAL=--code-loc 0x107 ./msx/crt0msx_msxdos.rel
 ADVANCED=--code-loc 0x178 ./msx/crt0msx_msxdos_advanced.rel
 
-RELOCATE=./msx/putchar.rel ./msx/getchar.rel ./msx/dos.rel ./msx/conio.rel ${LIBS}
+RELOCATE=./msx/putchar.rel ./msx/getchar.rel ./msx/dos.rel ./msx/conio.rel ${LIBS}.rel
 
 .PHONY: normal advanced clean superclean libs
 
@@ -24,12 +23,12 @@ default:
 
 normal:
 	make libs
-	${CC} ${INCLUDE} ${PARAMS} ${NORMAL} ${RELOCATE} ${INFILE}
+	${CC} ${INCLUDE} ${PARAMS} ${NORMAL} ${RELOCATE} ${INFILE}.c
 	${HEXBIN} ${OUTFILE}.ihx ${OUTFILE}.com
 
 advanced:
 	make libs
-	${CC} ${INCLUDE} ${PARAMS} ${ADVANCED} ${RELOCATE} ${INFILE}
+	${CC} ${INCLUDE} ${PARAMS} ${ADVANCED} ${RELOCATE} ${INFILE}.c
 	${HEXBIN} ${OUTFILE}.ihx ${OUTFILE}.com
 
 clean:
@@ -41,7 +40,5 @@ superclean:
 		${OUTFILE}.noi ${OUTFILE}.rel ${OUTFILE}.sym
 
 libs:
-	${AS} -o set_colors.s
-	${AS} -o set_video_mode.s
-	${AS} -o set_tiles.s
-	${AS} -o vdp.s
+	${AS} -o ${LIBS}.s
+
