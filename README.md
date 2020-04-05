@@ -31,13 +31,22 @@ cd /vagrant
 make
 ```
 
-A MSX-DOS "COM" named`paint-it.com` will be created. So copy it to a memory card, floppy disk or even to a disk image.
-
-Optionally, there is a TCL script that helps to import
+A MSX-DOS "COM" named `paint-it.com` will be created. So copy it to a memory card, floppy disk or even to a disk image.
 
 # How to play
 
-Press «SPACE» to generate a new board, color filling starts from upper left corner and spread to all 
+You need to fill the board with a single color. Press `SPACE` to generate a new board. Use the following keys to choose a color:
+
+- B for Blue
+- C for Cyan
+- G for Green
+- M for Magenta
+- R for Red
+- Y for Yellow
+
+Color filling starts from upper left corner and spread to all neighbor blocks with same color. By the way you have only 28 moves to complete this task.
+
+Press `?`  for help!
 
 # Screenshots
 
@@ -58,7 +67,3 @@ Press «SPACE» to generate a new board, color filling starts from upper left co
 ![](pictures/paint-it_4.png)
 
 
-
-# Toolbox
-
-I've used the follo
