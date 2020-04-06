@@ -15,7 +15,7 @@ PARAMS=-mz80 --no-std-crt0 --data-loc 0
 NORMAL=--code-loc 0x107 ./msx/crt0msx_msxdos.rel
 ADVANCED=--code-loc 0x178 ./msx/crt0msx_msxdos_advanced.rel
 
-RELOCATE=./msx/putchar.rel ./msx/keyboard.rel ./msx/getchar.rel ./msx/dos.rel ./msx/conio.rel ${LIBS}.rel
+RELOCATE=./msx/putchar.rel ./msx/keyboard.rel ./msx/getchar.rel  ${LIBS}.rel
 
 .PHONY: normal advanced clean superclean libs dist
 
