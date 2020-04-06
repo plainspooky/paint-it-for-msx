@@ -20,6 +20,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include "types.h"
+#include "keyboard.h"
 
 #include "paint-it.h"
 
@@ -413,17 +414,21 @@ int game(){
     moves = 0;
     game_status = GAME_RUN;
 
-    initialize_arena();
-    current_color = arena[0][0];
-    new_color = current_color;
-
     display_game_screen();
 
     // waith for <SPACE> to start
     locate(9, 23);
     puts(" Press <SPACE>! ");
 
-    while (getchar() != 32) {};
+    // put the random number generator to work while waits for space...
+
+    while (keyboard_read() != KEYBOARD_SPACE) {
+        rand();
+    }
+
+    initialize_arena();
+    current_color = arena[0][0];
+    new_color = current_color;
 
     locate(9, 23);
     puts("          \x87 Help");
@@ -499,6 +504,10 @@ int game(){
         }
     }
 
+    // update move counter
+    locate(9, 23);
+    printf("%i/%i", moves, MAX_MOVES);
+
     // handle with loop exit...
     switch (game_status){
         case GAME_WIN:
@@ -507,8 +516,8 @@ int game(){
             break;
 
         case GAME_LOSE:
-            locate(9, 23);
-            printf("%i/%i  YOU LOSE!", moves, MAX_MOVES);
+            locate(16, 23);
+            puts("YOU LOSE!");
             break;
 
         default:
