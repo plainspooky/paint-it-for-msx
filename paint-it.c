@@ -484,6 +484,8 @@ int game(){
 
         if (current_color != new_color){
 
+            moves++;
+
             // fill arena with chosen color...
             flood_fill(0, 0);
 
@@ -491,18 +493,17 @@ int game(){
 
             if (check_arena() == 0) {
                 game_status = GAME_WIN;
+                break;
             }
 
-            moves++;
-
-            if (moves >= MAX_MOVES){
+            if (moves == MAX_MOVES){
                 game_status = GAME_LOSE;
             }
-
-            // if game status changed, update arena for last time...
-            if (game_status != GAME_RUN) draw_arena();
         }
     }
+
+    // update arena for the last time...
+    draw_arena();
 
     // update move counter
     locate(9, 23);
