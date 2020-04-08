@@ -24,6 +24,10 @@
 
 #include "paint-it.h"
 
+// release information
+#define VERSION "1.0"
+#define REVISION "2"
+
 // Arena dimensions
 #define HEIGHT 16
 #define WIDTH 16
@@ -199,8 +203,11 @@ void display_gpl_message(){
     /*
         Makes GPL message scroll up on screen
     */
-    puts("Paint-it\r\nCopyright (C) 2020 Giovanni Nunes\r");
-    puts("This program comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under certain conditions;");
+    printf("Paint-it version %s rev.%s\r\n", VERSION, REVISION);
+
+    puts("Copyright (C) 2020 Giovanni Nunes\r");
+    puts("This program comes with ABSOLUTELY NO WARRANTY;\r");
+    puts("This is free software, and you are welcome to redistribute it under certain conditions.\r");
 
 } // display_gpl_message()
 
